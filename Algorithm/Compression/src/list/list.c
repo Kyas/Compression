@@ -11,11 +11,11 @@
  * 
  *****************************************************************************/
 
-#include "list.h"
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <assert.h>
+#include <list/list.h>
 
 /**
  * Test if the List is empty. 
