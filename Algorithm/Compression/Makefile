@@ -1,7 +1,7 @@
 CC?=gcc
 AR?=ar
 
-CFLAGS_INCLUDE = -I./src/ -I./src/list/ -I./src/coding/
+CFLAGS_INCLUDE = -I./src/ -I./src/list/ -I./src/coding/ -I./src/decoding/
 CFLAGS += $(CFLAGS_INCLUDE) -Wall -Wextra -Werror
 CFLAGS_DEBUG = $(CFLAGS) -O0 -g $(CFLAGS_DEBUG_EXTRA)
 CFLAGS_FAST = $(CFLAGS) -Os $(CFLAGS_FAST_EXTRA) -pedantic -march=native \
@@ -10,13 +10,15 @@ CFLAGS_FAST = $(CFLAGS) -Os $(CFLAGS_FAST_EXTRA) -pedantic -march=native \
 
 all: compress test
 
-test: test_list test_coding
+test: test_list test_coding test_decoding
 	./bin/test_list
 	./bin/test_coding
+	./bin/test_decoding
 	
-test_valgrind: test_list test_coding
+test_valgrind: test_list test_coding test_decoding
 	valgrind ./bin/test_list
 	valgrind ./bin/test_coding
+	valgrind ./bin/test_decoding
 
 compress: src/main.o
 	@mkdir -p bin/
@@ -33,6 +35,11 @@ test_coding: src/list/debug-list.o src/coding/debug-coding.o src/test/test_codin
 	$(CC) $(CPPFLAGS_DEBUG) $(CFLAGS_DEBUG) $^ -o bin/$@
 	@echo Compilation of $@ [DONE]
 	
+test_decoding: src/list/debug-list.o src/decoding/debug-decoding.o src/test/test_decoding.o src/test/test.o
+	@mkdir -p bin/
+	$(CC) $(CPPFLAGS_DEBUG) $(CFLAGS_DEBUG) $^ -o bin/$@
+	@echo Compilation of $@ [DONE]
+	
 flags:
 	@echo CFLAGS: $(CFLAGS)
 	@echo CFLAGS_DEBUG: $(CFLAGS_DEBUG)
@@ -43,6 +50,7 @@ flags:
 clean: 
 	rm -f src/list/*.o
 	rm -f src/coding/*.o
+	rm -f src/decoding/*.o
 	rm -f src/test/*.o
 	rm -rf bin/*
 	
@@ -50,6 +58,9 @@ src/list/debug-%.o: src/list/%.c
 	$(CC) $(CPPFLAGS_DEBUG) $(CFLAGS_DEBUG) -c -ansi $< -o $@
 	
 src/coding/debug-%.o: src/coding/%.c
+	$(CC) $(CPPFLAGS_DEBUG) $(CFLAGS_DEBUG) -c -ansi $< -o $@
+	
+src/decoding/debug-%.o: src/decoding/%.c
 	$(CC) $(CPPFLAGS_DEBUG) $(CFLAGS_DEBUG) -c -ansi $< -o $@
 	
 src/test/%.o: src/test/%.c

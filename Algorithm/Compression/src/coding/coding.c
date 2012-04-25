@@ -34,7 +34,7 @@
  *	- -1 otherwise.
  */
 int codingWordList(Liste *l, char *word) {
-	if(l != NULL && word != NULL) {
+	if(word != NULL) {
 		if(indexOf(*l, word) > 0) { /* word found in the List. */
 			int index = indexOf(*l, word);
 			/* moves the word to the header of the List. */
@@ -47,4 +47,3 @@ int codingWordList(Liste *l, char *word) {
 	}
 	return -1;
 }
-
