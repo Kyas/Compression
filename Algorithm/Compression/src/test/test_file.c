@@ -22,8 +22,8 @@
 
 int main() {
 
-	FILE *in_array = fopen("./bin/texte_non_code", "r");
-	FILE *in_list = fopen("./bin/texte_non_code", "r");
+	FILE *in_array = fopen("./src/texte_non_code", "r");
+	FILE *in_list = fopen("./src/texte_non_code", "r");
 	
 	assert(in_array != NULL);
 	assert(in_list != NULL);

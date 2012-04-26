@@ -26,8 +26,8 @@
 
 int main() {
 
-	FILE *in = fopen("./bin/texte_non_code", "r");
-	FILE *out = fopen("./bin/texte_code", "w");
+	FILE *in = fopen("./src/texte_non_code", "r");
+	FILE *out = fopen("./src/texte_code", "w");
 	
 	printf("%d\n", compression(in, out));
 
