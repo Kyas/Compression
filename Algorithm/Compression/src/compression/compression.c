@@ -24,41 +24,30 @@
 int compression(FILE *in, FILE *out) {
 	if(in != NULL) {
 		Liste tmp = NULL;
-		Liste l = readFileIntoList(in); /* Result : deux -> et -> deux -> quatre -> quatre -> et -> quatre -> huit */
+		Liste l = readNoEncodedFileIntoList(in); /* Result : deux -> et -> deux -> quatre -> quatre -> et -> quatre -> huit */
+		int n = 0;		
 		
-		/* Doesn't work -___- */
 		while(l != NULL) {
-			printf("%d\n", codingWordList(&tmp,l->word) );
+		
+			n = codingWordList(&tmp, l->word);
+			
+			if(n == 0) {
+			
+				fprintf(out, "%d ", n);
+				fprintf(out, "%d ", strlen(l->word));
+				fprintf(out, "%s ", l->word);
+				
+			} else if(n > 0) {
+				
+				fprintf(out, "%d ", n);
+				
+			} else {
+			
+				return 0;
+			}
+			
 			l = l->next;
 		}
-		
-		/* Doesn't work too */
-/*		printf("%d\n", codingWordList(&tmp,l->word) );*/
-/*		printf("%d\n", codingWordList(&tmp,l->next->word) );*/
-/*		printf("%d\n", codingWordList(&tmp,l->next->next->word) );*/
-/*		printf("%d\n", codingWordList(&tmp,l->next->next->next->word) );*/
-/*		printf("%d\n", codingWordList(&tmp,l->next->next->next->next->word) );*/
-		
-		/* This example works...*/
-/*		printf("%d\n", codingWordList(&tmp,l->word) );*/
-/*		printf("%d\n", codingWordList(&tmp,l->next->word) );*/
-/*		printf("%d\n", codingWordList(&tmp,l->word) );*/
-/*		printf("%d\n", codingWordList(&tmp,l->next->next->word) );*/
-/*		printf("%d\n", codingWordList(&tmp,l->next->next->word) );*/
-
-
-		/* PS Thomas : Je démontre bien que le mot "deux" sont égaux dans la liste, donc pas de problème de lecture à mon avis */
-		/* PS 2 : J'ai fait un test unitaire pour codingWordList */
-		
-		/* Pour faire marcher ceci, commenter le reste sauf Liste l */
-/*		if(strcmp(l->word, l->next->next->word) == 0) {*/
-/*			printf("ok\n\n");*/
-/*		} else {*/
-/*			printf("non\n\n");*/
-/*		}*/
-		
-		fclose(in);
-		fclose(out);
 		return 1;
 	}
 	return 0;

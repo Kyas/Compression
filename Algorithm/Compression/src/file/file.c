@@ -27,7 +27,7 @@
 void displayString(char** s, int numberOfWords) {
     int i;
     for(i=0; i < numberOfWords; i++) {
-    	printf("%s %d ", s[i], strlen(s[i]));  
+    	printf("%s %d\n", s[i], strlen(s[i]));  
     }
     putchar('\n');
 }
@@ -41,7 +41,7 @@ void displayString(char** s, int numberOfWords) {
  *		Word counter
  * @return the Array of characters
  */
-char** readFileIntoArray(FILE* in, int* numberOfWords) {
+char** readNoEncodedFileIntoArray(FILE* in, int* numberOfWords) {
     char c;
     int i;
     int j=0, k=0;
@@ -77,14 +77,14 @@ char** readFileIntoArray(FILE* in, int* numberOfWords) {
  *		Word counter
  * @return the Array of characters
  */
-Liste readFileIntoList(FILE* in) {
+Liste readNoEncodedFileIntoList(FILE* in) {
 	if(in != NULL) {
 		Liste l = NULL;
 		int i;
 		int numberOfWords = 0;
 		char** res = (char**)malloc(128*sizeof(char*));
 		
-		res = readFileIntoArray(in, &numberOfWords);
+		res = readNoEncodedFileIntoArray(in, &numberOfWords);
 	
 		for(i=0; i < numberOfWords; i++) {
 			addLast(&l, res[i]);

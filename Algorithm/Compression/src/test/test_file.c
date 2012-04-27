@@ -35,11 +35,11 @@ int main() {
 		int numberOfWords = 0;
 		char** res = (char**)malloc(128*sizeof(char*));
 		
-		res = readFileIntoArray(in_array, &numberOfWords);
+		res = readNoEncodedFileIntoArray(in_array, &numberOfWords);
 		assert(res != NULL);
 		
 		/* The List */
-		Liste l = readFileIntoList(in_list);
+		Liste l = readNoEncodedFileIntoList(in_list);
 		assert(l != NULL);
 		
 		fclose(in_array);

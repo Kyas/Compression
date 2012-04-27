@@ -29,7 +29,7 @@ int main() {
 	FILE *in = fopen("./src/texte_non_code", "r");
 	FILE *out = fopen("./src/texte_code", "w");
 	
-	printf("%d\n", compression(in, out));
+	assert(compression(in, out) == 1);
 
 	testSuccessful(__FILE__);
 

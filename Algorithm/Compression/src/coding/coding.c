@@ -34,16 +34,26 @@
  *	- -1 otherwise.
  */
 int codingWordList(Liste *l, char *word) {
+	
 	if(word != NULL) {
-		if(indexOf(*l, word) > 0) { /* word found in the List. */
-			int index = indexOf(*l, word);
+
+		int index = indexOf(*l, word);
+
+		if(index > 0) { 
+
+			/* word found in the List. */
+
 			/* moves the word to the header of the List. */
-			moveToFirst(l, indexOf(*l, word));
-			return index;
-		} else { /* word not found in the List. */
-			addLast(l, word);
+			if(moveToFirst(l, index)) {
+				return index;
+			}
+
+		} else if(addLast(l, word)) {
+
+			/* word not found in the List. */
 			return 0;
 		}
 	}
+
 	return -1;
 }

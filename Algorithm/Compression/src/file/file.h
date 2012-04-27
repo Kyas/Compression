@@ -16,9 +16,12 @@
 #ifndef FILE_H
 #define FILE_H
 
-Liste readFileIntoList(FILE* in);
+/*******************************************/
+/*		Unencrypted file management       */
+/*****************************************/
+Liste readNoEncodedFileIntoList(FILE* in);
 
-char** readFileIntoArray(FILE* in, int* numberOfWords);
+char** readNoEncodedFileIntoArray(FILE* in, int* numberOfWords);
 
 void displayString(char** s, int numberOfWords);
 
