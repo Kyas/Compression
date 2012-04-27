@@ -19,10 +19,35 @@
 /*******************************************/
 /*		Unencrypted file management       */
 /*****************************************/
+
+/**
+ * Read the file and return an array of characters.
+ *
+ * @param *in 
+ *		The file
+ * @param *numberOfWords
+ *		Word counter
+ * @return the Array of characters
+ */
 Liste readNoEncodedFileIntoList(FILE* in);
 
+/**
+ * Read the file and return an array of characters.
+ *
+ * @param *in 
+ *		The file
+ * @param *numberOfWords
+ *		Word counter
+ * @return the Array of characters
+ */
 char** readNoEncodedFileIntoArray(FILE* in, int* numberOfWords);
 
+/**
+ * Display the array of characters.
+ *
+ * @param **s 
+ *		An array of characters
+ */
 void displayString(char** s, int numberOfWords);
 
 #endif

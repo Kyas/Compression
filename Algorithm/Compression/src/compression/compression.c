@@ -21,10 +21,19 @@
 #include <decoding/decoding.h>
 #include <file/file.h>
 
+/**
+ * Make the compression of a uncrypted file.
+ *
+ * @param *in
+ *		The input file (uncrypted file)
+ * @param *out
+ *		The output file (the uncrypted file becomes crypted)
+ * @return 1 if the compression is a success, 0 otherwise.
+ */
 int compression(FILE *in, FILE *out) {
 	if(in != NULL) {
 		Liste tmp = NULL;
-		Liste l = readNoEncodedFileIntoList(in); /* Result : deux -> et -> deux -> quatre -> quatre -> et -> quatre -> huit */
+		Liste l = readNoEncodedFileIntoList(in);
 		int n = 0;		
 		
 		while(l != NULL) {

@@ -15,6 +15,26 @@
 #ifndef COMPRESSION_H
 #define COMPRESSION_H
 
+/**
+ * Make the compression of a uncrypted file.
+ *
+ * @param *in
+ *		The input file (uncrypted file)
+ * @param *out
+ *		The output file (the uncrypted file becomes crypted)
+ * @return 1 if the compression is a success, 0 otherwise.
+ */
 int compression(FILE *in, FILE *out);
+
+/**
+ * Make the decompression of a crypted file.
+ *
+ * @param *in
+ *		The input file (crypted file)
+ * @param *out
+ *		The output file (the crypted file becomes uncrypted)
+ * @return 1 if the decompression is a success, 0 otherwise.
+ */
+/* int decompression(FILE *in, FILE *out); */
 
 #endif
