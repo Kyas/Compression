@@ -56,11 +56,11 @@ char** readNoEncodedFileIntoArray(FILE* in, int* numberOfWords) {
     int j=0, k=0;
     
     /* Allocation of the 1st dimension */
-    char** res = (char**)malloc(128*sizeof(char*));
+    char** res = (char**)malloc(4096*sizeof(char*));
     
     /* Allocation of the 2nd dimension */
-    for (i = 0; i < 128; i++) {
-        res[i] = (char*)malloc (128*sizeof(char));
+    for (i = 0; i < 4096; i++) {
+        res[i] = (char*)malloc (4096*sizeof(char));
     }
     
     if(res == NULL) {
@@ -71,7 +71,7 @@ char** readNoEncodedFileIntoArray(FILE* in, int* numberOfWords) {
     
     while((c=fgetc(in)) !=EOF) {
     
-        if(c != '\r' && c != '\n' && c != ' ' && c != '\t' && c!= '-' && c != '\0') {
+        if(c != '\r' && c != '\n' && c != ' ' && c != '\t' && c != '\0') {
         
             res[j][k] = c;
             k++;
@@ -118,7 +118,7 @@ Liste readNoEncodedFileIntoList(FILE* in) {
 		Liste l = NULL;
 		int i;
 		int numberOfWords = 0;
-		char** res = (char**)malloc(128*sizeof(char*));
+		char** res = (char**)malloc(4096*sizeof(char*));
 		
 		res = readNoEncodedFileIntoArray(in, &numberOfWords);
 	

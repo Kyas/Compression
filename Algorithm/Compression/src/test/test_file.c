@@ -33,7 +33,7 @@ int main() {
 		
 		/* The array of characters */
 		int numberOfWords = 0;
-		char** res = (char**)malloc(128*sizeof(char*));
+		char** res = (char**)malloc(4096*sizeof(char*));
 		
 		res = readNoEncodedFileIntoArray(in_array, &numberOfWords);
 		assert(res != NULL);

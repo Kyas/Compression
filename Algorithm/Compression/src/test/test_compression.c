@@ -26,7 +26,7 @@
 
 int main() {
 
-	FILE *in_compression = fopen("./src/texte_non_code", "r");
+	FILE *in_compression = fopen("./src/declaration.txt", "r");
 	FILE *out_compression = fopen("./src/texte_code", "w");
 	
 	assert(compression(in_compression, out_compression) == 1);
