@@ -35,6 +35,6 @@ int compression(FILE *in, FILE *out);
  *		The output file (the crypted file becomes uncrypted)
  * @return 1 if the decompression is a success, 0 otherwise.
  */
-/* int decompression(FILE *in, FILE *out); */
+int decompression(FILE *in, FILE *out); 
 
 #endif

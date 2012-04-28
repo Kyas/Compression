@@ -26,10 +26,21 @@
 
 int main() {
 
-	FILE *in = fopen("./src/texte_non_code", "r");
-	FILE *out = fopen("./src/texte_code", "w");
+	FILE *in_compression = fopen("./src/texte_non_code", "r");
+	FILE *out_compression = fopen("./src/texte_code", "w");
 	
-	assert(compression(in, out) == 1);
+	assert(compression(in_compression, out_compression) == 1);
+	
+	fclose(in_compression);
+	fclose(out_compression);
+	
+	FILE *in_decompression = fopen("./src/texte_code", "r");
+	FILE *out_decompression = fopen("./src/texte_non_code_origin", "w");
+	
+	assert(decompression(in_decompression, out_decompression) == 1);
+	
+	fclose(in_decompression);
+	fclose(out_decompression);
 
 	testSuccessful(__FILE__);
 

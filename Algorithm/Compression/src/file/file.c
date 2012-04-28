@@ -29,7 +29,11 @@ void displayString(char** s, int numberOfWords) {
     int i;
     
     for(i=0; i < numberOfWords; i++) {
-    	printf("%s %d\n", s[i], strlen(s[i]));  
+    	if(strcmp(s[i], "\n")) {
+    		printf("%s ", s[i]); 
+    	} else {
+    		printf("\n");
+    	}
     }
     
     putchar('\n');

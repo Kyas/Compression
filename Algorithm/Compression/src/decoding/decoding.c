@@ -21,15 +21,22 @@
 
 /* Partie décodage */
 int decodingWordList(Liste *l, char *word, int n) {
+
 	if(n >= 0) {
+	
 		if(n == 0) {
+		
 			addLast(l, word);
 			return 1;
+			
 		} else {
+		
 			moveToFirst(l, n);
 			return 1;
+			
 		}
 	}
+	
 	return 0;
 }
 
