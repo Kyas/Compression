@@ -45,7 +45,8 @@ int compression(FILE *in, FILE *out) {
 				fprintf(out, "%d ", n);
 				fprintf(out, "%d ", strlen(l->word));
 				
-				if(strcmp(l->next->word, "\n") != 0) { /* To make sure that the end of the line doesn't contain SPACES ! */
+				/* To make sure that the end of the line doesn't contain SPACES ! */
+				if(strcmp(l->next->word, "\n") != 0) {
 					fprintf(out, "%s ", l->word);
 				} else {
 					fprintf(out, "%s", l->word);
@@ -95,7 +96,8 @@ int decompression(FILE *in, FILE *out) {
 			
 				n = decodingWordList(&tmp, l->next->next->word, 0);
 				
-				if(strcmp(l->next->next->next->word, "\n") != 0) { /* To make sure that the end of the line doesn't contain SPACES ! */
+				/* To make sure that the end of the line doesn't contain SPACES ! */
+				if(strcmp(l->next->next->next->word, "\n") != 0) {
 					fprintf(out, "%s ", l->next->next->word);
 				} else {
 					fprintf(out, "%s", l->next->next->word);
