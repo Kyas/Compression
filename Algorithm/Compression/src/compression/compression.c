@@ -50,6 +50,8 @@ int compression(FILE *in, FILE *out) {
 				
 				fprintf(out, "%d ", n);
 				
+			} else if(n == -2) {
+				fprintf(out, "\n");
 			} else {
 			
 				return 0;

@@ -25,11 +25,15 @@
  *		An array of characters
  */
 void displayString(char** s, int numberOfWords) {
+
     int i;
+    
     for(i=0; i < numberOfWords; i++) {
     	printf("%s %d\n", s[i], strlen(s[i]));  
     }
+    
     putchar('\n');
+    
 }
 
 /**
@@ -42,30 +46,56 @@ void displayString(char** s, int numberOfWords) {
  * @return the Array of characters
  */
 char** readNoEncodedFileIntoArray(FILE* in, int* numberOfWords) {
+
     char c;
     int i;
     int j=0, k=0;
+    
     /* Allocation of the 1st dimension */
     char** res = (char**)malloc(128*sizeof(char*));
+    
     /* Allocation of the 2nd dimension */
     for (i = 0; i < 128; i++) {
         res[i] = (char*)malloc (128*sizeof(char));
     }
+    
     if(res == NULL) {
+    
         return NULL;
+        
     }
+    
     while((c=fgetc(in)) !=EOF) {
+    
         if(c != '\r' && c != '\n' && c != ' ' && c != '\t' && c!= '-' && c != '\0') {
+        
             res[j][k] = c;
             k++;
+            
+        } else if (c == '\n') {
+        
+        	res[j][k] = '\0'; /* To finish the current word */
+            j++;
+            k=0;    
+            (*numberOfWords)++;
+            
+            res[j][k] = '\n'; /* We add the \n after in the array */
+            j++;
+            k=0;
+            (*numberOfWords)++;
+            
         } else {
+        
         	res[j][k] = '\0';
             j++;
             k=0;
             (*numberOfWords)++;
+            
         }
     }
+    
     return res;
+    
 }
 
 /**
@@ -78,7 +108,9 @@ char** readNoEncodedFileIntoArray(FILE* in, int* numberOfWords) {
  * @return the Array of characters
  */
 Liste readNoEncodedFileIntoList(FILE* in) {
+
 	if(in != NULL) {
+	
 		Liste l = NULL;
 		int i;
 		int numberOfWords = 0;
@@ -87,9 +119,15 @@ Liste readNoEncodedFileIntoList(FILE* in) {
 		res = readNoEncodedFileIntoArray(in, &numberOfWords);
 	
 		for(i=0; i < numberOfWords; i++) {
+		
 			addLast(&l, res[i]);
+			
 		}
+		
 		return l;
+		
 	}
+	
 	return NULL;
+	
 }

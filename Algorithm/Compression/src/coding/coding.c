@@ -31,12 +31,17 @@
  * @return 
  *	- the position of the word in the List and move it to the header of the List. 
  *	- 0 if the word is not in the List and adds it at the end of the List.
+ *	- -2 if the word is '\n'.
  *	- -1 otherwise.
  */
 int codingWordList(Liste *l, char *word) {
 	
 	if(word != NULL) {
 
+		if(strcmp(word, "\n") ==0) { 
+			return -2; 
+		}
+		
 		int index = indexOf(*l, word);
 
 		if(index > 0) { 
