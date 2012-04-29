@@ -24,7 +24,9 @@ test_valgrind: test_list test_coding test_decoding test_file test_compression
 	valgrind ./bin/test_file
 	valgrind ./bin/test_compression
 
-Compresse: src/main.o
+Compresse: src/main.o src/options.o \
+	src/compression/debug-compression.o src/coding/debug-coding.o src/decoding/debug-decoding.o \
+	src/list/debug-list.o src/file/debug-file.o
 	@mkdir -p bin/
 	$(CC) $(CPPFLAGS_FAST) $(CFLAGS_FAST) $^ -o bin/$@
 	@echo Compilation of $@ [DONE]
