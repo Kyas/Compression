@@ -1,0 +1,29 @@
+Algorithm Project - COMPRESSION
+=======================
+     Temporary file
+=======================
+
+This file is for tests.
+This file is temporary at the moment because the program isn't finished yet !
+
+=======================
+     HOW TO USE
+=======================
+
+- With the real program Compresse
+
+I. FOR THE COMPRESSION
+
+1) Be at the folder ../Compression
+2) Use make
+3) Go to ../Compression/bin
+4) Use the example : Compresse -c -t texte_non_code texte_code
+
+5) See now the file texte_code (the output file is encrypted).
+
+II. FOR THE DECOMPRESSION
+
+1) Be sure to do 'make' before !
+2) Use the example : Compresse -d -t texte_code texte_code_origin
+
+3) See now the file texte_code_origin (the output file is decrypted).
