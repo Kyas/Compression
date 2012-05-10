@@ -190,7 +190,7 @@ int indexOf(Liste l, char *word) {
 	int cursor = 1;
 
 	while(!isEmpty(&l)) {
-		if(l->word == word) {
+		if(!strcmp(l->word, word)) {
 			return cursor;
 		}
 		cursor++;
