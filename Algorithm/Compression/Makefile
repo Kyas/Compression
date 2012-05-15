@@ -1,7 +1,7 @@
 CC?=gcc
 AR?=ar
 
-CFLAGS_INCLUDE = -I./src/ -I./src/list/ -I./src/coding/ -I./src/decoding/ -I./src/file/ -I./src/compression/
+CFLAGS_INCLUDE = -I./src/ -I./src/list/ -I./src/coding/ -I./src/decoding/ -I./src/alpha/file/ -I./src/alpha/compression/
 CFLAGS += $(CFLAGS_INCLUDE) -Wall -Wextra -Werror
 CFLAGS_DEBUG = $(CFLAGS) -O0 -g $(CFLAGS_DEBUG_EXTRA)
 CFLAGS_FAST = $(CFLAGS) -Os $(CFLAGS_FAST_EXTRA) -pedantic -march=native \
@@ -10,23 +10,23 @@ CFLAGS_FAST = $(CFLAGS) -Os $(CFLAGS_FAST_EXTRA) -pedantic -march=native \
 
 all: Compresse test
 
-test: test_list test_coding test_decoding test_file test_compression
+test: test_list test_coding test_decoding test_file_alpha test_compression_alpha
 	./bin/test_list
 	./bin/test_coding
 	./bin/test_decoding
-	./bin/test_file
-	./bin/test_compression
+	./bin/test_file_alpha
+	./bin/test_compression_alpha
 	
 test_valgrind: test_list test_coding test_decoding test_file test_compression
 	valgrind ./bin/test_list
 	valgrind ./bin/test_coding
 	valgrind ./bin/test_decoding
-	valgrind ./bin/test_file
-	valgrind ./bin/test_compression
+	valgrind ./bin/test_file_alpha
+	valgrind ./bin/test_compression_alpha
 
 Compresse: src/main.o src/options.o \
-	src/compression/debug-compression.o src/coding/debug-coding.o src/decoding/debug-decoding.o \
-	src/list/debug-list.o src/file/debug-file.o
+	src/alpha/compression/debug-compression_alpha.o src/coding/debug-coding.o src/decoding/debug-decoding.o \
+	src/list/debug-list.o src/alpha/file/debug-file_alpha.o
 	@mkdir -p bin/
 	$(CC) $(CPPFLAGS_FAST) $(CFLAGS_FAST) $^ -o bin/$@
 	@echo Compilation of $@ [DONE]
@@ -46,13 +46,13 @@ test_decoding: src/list/debug-list.o src/decoding/debug-decoding.o src/test/test
 	$(CC) $(CPPFLAGS_DEBUG) $(CFLAGS_DEBUG) $^ -o bin/$@
 	@echo Compilation of $@ [DONE]
 	
-test_file: src/list/debug-list.o src/file/debug-file.o src/test/test_file.o src/test/test.o
+test_file_alpha: src/list/debug-list.o src/alpha/file/debug-file_alpha.o src/test/test_file_alpha.o src/test/test.o
 	@mkdir -p bin/
 	$(CC) $(CPPFLAGS_DEBUG) $(CFLAGS_DEBUG) $^ -o bin/$@
 	@echo Compilation of $@ [DONE]
 	
-test_compression: src/list/debug-list.o src/file/debug-file.o src/coding/debug-coding.o src/decoding/debug-decoding.o src/compression/debug-compression.o \
-	src/test/test_compression.o src/test/test.o
+test_compression_alpha: src/list/debug-list.o src/alpha/file/debug-file_alpha.o src/coding/debug-coding.o src/decoding/debug-decoding.o src/alpha/compression/debug-compression_alpha.o \
+	src/test/test_compression_alpha.o src/test/test.o
 	@mkdir -p bin/
 	$(CC) $(CPPFLAGS_DEBUG) $(CFLAGS_DEBUG) $^ -o bin/$@
 	@echo Compilation of $@ [DONE]
@@ -68,8 +68,8 @@ clean:
 	rm -f src/list/*.o
 	rm -f src/coding/*.o
 	rm -f src/decoding/*.o
-	rm -f src/file/*.o
-	rm -f src/compression/*.o
+	rm -f src/alpha/file/*.o
+	rm -f src/alpha/compression/*.o
 	rm -f src/test/*.o
 	rm -rf bin/*
 	
@@ -82,10 +82,10 @@ src/coding/debug-%.o: src/coding/%.c
 src/decoding/debug-%.o: src/decoding/%.c
 	$(CC) $(CPPFLAGS_DEBUG) $(CFLAGS_DEBUG) -c -ansi $< -o $@
 	
-src/file/debug-%.o: src/file/%.c
+src/alpha/file/debug-%_alpha.o: src/alpha/file/%.c
 	$(CC) $(CPPFLAGS_DEBUG) $(CFLAGS_DEBUG) -c -ansi $< -o $@
 	
-src/compression/debug-%.o: src/compression/%.c
+src/alpha/compression/debug-%_alpha.o: src/alpha/compression/%.c
 	$(CC) $(CPPFLAGS_DEBUG) $(CFLAGS_DEBUG) -c -ansi $< -o $@
 
 src/test/%.o: src/test/%.c

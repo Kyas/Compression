@@ -60,7 +60,7 @@ char** readNoEncodedFileIntoArray(FILE* in, int* numberOfWords) {
     
     /* Allocation of the 2nd dimension */
     for (i = 0; i < 4096; i++) {
-        res[i] = (char*)malloc (4096*sizeof(char));
+        res[i] = (char*)malloc (128*sizeof(char));
     }
     
     if(res == NULL) {

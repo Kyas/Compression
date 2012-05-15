@@ -14,8 +14,8 @@
 #include <list/list.h>
 #include <coding/coding.h>
 #include <decoding/decoding.h>
-#include <file/file.h>
-#include <compression/compression.h>
+#include <alpha/file/file.h>
+#include <alpha/compression/compression.h>
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -26,16 +26,18 @@
 
 int main() {
 
-	FILE *in_compression = fopen("./src/declaration.txt", "r");
-	FILE *out_compression = fopen("./src/texte_code", "w");
+	/* The Compression Part */
+	FILE *in_compression = fopen("./src/exemples/declaration", "r");
+	FILE *out_compression = fopen("./src/exemples/declaration_code", "w");
 	
 	assert(compression(in_compression, out_compression) == 1);
 	
 	fclose(in_compression);
 	fclose(out_compression);
 	
-	FILE *in_decompression = fopen("./src/texte_code", "r");
-	FILE *out_decompression = fopen("./src/texte_non_code_origin", "w");
+	/* The Decompression Part */
+	FILE *in_decompression = fopen("./src/exemples/declaration_code", "r");
+	FILE *out_decompression = fopen("./src/exemples/declaration_origin", "w");
 	
 	assert(decompression(in_decompression, out_decompression) == 1);
 	

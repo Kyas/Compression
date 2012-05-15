@@ -19,7 +19,7 @@
 #include <list/list.h>
 #include <coding/coding.h>
 #include <decoding/decoding.h>
-#include <file/file.h>
+#include <alpha/file/file.h>
 
 /**
  * Make the compression of a uncrypted file.

@@ -12,7 +12,7 @@
  *****************************************************************************/
  
 #include <list/list.h>
-#include <file/file.h>
+#include <alpha/file/file.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -22,8 +22,8 @@
 
 int main() {
 
-	FILE *in_array = fopen("./src/texte_non_code", "r");
-	FILE *in_list = fopen("./src/texte_non_code", "r");
+	FILE *in_array = fopen("./src/exemples/texte_non_code", "r");
+	FILE *in_list = fopen("./src/exemples/texte_non_code", "r");
 	
 	assert(in_array != NULL);
 	assert(in_list != NULL);
@@ -33,7 +33,7 @@ int main() {
 		
 		/* The array of characters */
 		int numberOfWords = 0;
-		char** res = (char**)malloc(4096*sizeof(char*));
+		char** res = (char**)malloc(8192*sizeof(char*));
 		
 		res = readNoEncodedFileIntoArray(in_array, &numberOfWords);
 		assert(res != NULL);
@@ -42,6 +42,7 @@ int main() {
 		Liste l = readNoEncodedFileIntoList(in_list);
 		assert(l != NULL);
 		
+		free(res);
 		fclose(in_array);
 		fclose(in_list);
 	}
