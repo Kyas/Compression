@@ -44,11 +44,12 @@ public class Eleve extends Personne implements Comparable<Eleve> {
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 
-		sb.append(super.toString()).append(" id: ").append(identifiant)
-				.append(" notes: ");
 		if(this.getNotes() != null) {
 			try {
-				sb.append(Arrays.toString(getNotes())).append(" Moyenne: ").append(this.moyenne());
+				if(moyenne() != 0) {
+					sb.append(super.toString()).append("\n\tIdentifiant : ").append(identifiant)
+					.append("\n\tNotes: ").append(Arrays.toString(getNotes())).append("\n\tMoyenne: ").append(this.moyenne()).append("\n");
+				}
 			} catch (NotesVides e) {
 				System.err.println(super.toString() + " n'a pas de notes !");
 			}

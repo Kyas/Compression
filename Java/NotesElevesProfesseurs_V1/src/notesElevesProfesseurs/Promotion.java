@@ -5,9 +5,13 @@ import java.util.ArrayList;
 import notesElevesProfesseurs.exceptions.EleveInexistant;
 
 public class Promotion {
-	public static final ArrayList<Eleve> liste = new ArrayList<Eleve> (); 
+	public ArrayList<Eleve> liste; 
+	
+	public Promotion() {
+		liste = new ArrayList<Eleve> ();
+	}
 
-	public static Eleve rechercher(int identifiant) throws EleveInexistant {
+	public Eleve rechercher(int identifiant) throws EleveInexistant {
 		Eleve e = null;
 		boolean trouve = false;
 		int i = 0;
@@ -31,10 +35,14 @@ public class Promotion {
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		int i;
-		sb.append("Coucou");
+		sb.append("=======================\n\tPROMOTION\n=======================\n");
 		for(i=0; i < liste.size(); i++) {
-			sb.append(liste.get(i)).append("\n");
+			sb.append(liste.get(i));
 		}
 		return sb.toString();
+	}
+
+	public void add(Eleve eleve) {
+		liste.add(eleve);
 	}
 }

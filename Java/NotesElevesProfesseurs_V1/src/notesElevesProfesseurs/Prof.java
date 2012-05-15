@@ -12,10 +12,10 @@ public class Prof extends Personne {
 		super(nom, prenom);
 	}
 
-	public void setNote(int identifiant, float valeur, int index) {
+	public void setNote(Promotion p, int identifiant, float valeur, int index) {
 		Eleve corrige = null;
 		try {
-			corrige = Promotion.rechercher(identifiant);
+			corrige = p.rechercher(identifiant);
 		} catch (EleveInexistant e) {
 			System.out.println("Cet élève est inexistant");
 		}
@@ -27,14 +27,14 @@ public class Prof extends Personne {
 		}
 	}
 
-	public static void triEleves() {
+	public static void triEleves(Promotion p) {
 		ArrayList<Eleve> listetriee = new ArrayList<Eleve>();
 		int i, j;
 		Eleve eleve1, eleve2;
 		float moy1 = 0, moy2 = 0;
 
-		for (i = 0; i < Promotion.liste.size(); i++) {
-			eleve1 = Promotion.liste.get(i);
+		for (i = 0; i < p.liste.size(); i++) {
+			eleve1 = p.liste.get(i);
 			try {
 				moy1 = eleve1.moyenne();
 				listetriee.add(eleve1);
@@ -71,7 +71,7 @@ public class Prof extends Personne {
 		}
 	}
 
-	public static void sort() {
-		Collections.sort(Promotion.liste);
+	public static void sort(Promotion p) {
+		Collections.sort(p.liste);
 	}
 }

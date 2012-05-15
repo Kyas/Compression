@@ -8,6 +8,8 @@ import notesElevesProfesseurs.exceptions.EleveInexistant;
 public class Main {
 	public static void main(String[] args) {
 		
+		Promotion p1 = new Promotion();
+
 		/**
 		 * Créer 4 élèves et 2 professeurs.
 		 */
@@ -21,29 +23,30 @@ public class Main {
 		/**
 		 * Ranger les élèves dans leur promotion.
 		 */
-		Promotion.liste.add(eleve1);
-		Promotion.liste.add(eleve2);
-		Promotion.liste.add(eleve3);
+		p1.add(eleve1);
+		p1.add(eleve2);
+		p1.add(eleve3);
 
 		/**
 		 * Mettre des notes aux élèves.
 		 */
-		prof1.setNote(1, 12, 0);
-		prof2.setNote(1, 6, 1);
-		prof1.setNote(1, 15, 7);
+		prof1.setNote(p1, 1, 12, 0);
+		prof2.setNote(p1, 1, 6, 1);
+		prof1.setNote(p1, 1, 15, 7);
 		
-		prof1.setNote(2, 11, 0);
-		prof1.setNote(2, 19, 0);
+		prof1.setNote(p1, 2, 11, 0);
+		prof1.setNote(p1, 2, 19, 0);
 
 		/**
 		 * Afficher tous les élèves d'une Promotion.
 		 */
 		
 		try {
-			System.out.println(Promotion.rechercher(1));
-			System.out.println(Promotion.rechercher(2));
-			System.out.println(Promotion.rechercher(3));
-			System.out.println(Promotion.rechercher(4));
+			System.out.println(p1.rechercher(1));
+			System.out.println(p1.rechercher(2));
+//			System.out.println(p1.rechercher(3));
+//			System.out.println(p1.rechercher(4));
+			System.out.println(p1);
 		} catch (EleveInexistant e) {
 			System.out.println(e.getMessage());
 		}
