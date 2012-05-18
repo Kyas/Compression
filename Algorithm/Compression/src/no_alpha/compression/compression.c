@@ -22,7 +22,7 @@
 
 #include <no_alpha/file/file.h>
 
-int newCompression(FILE *in, FILE *out) {
+int newCompression (FILE *in, FILE *out) {
 	if(in != NULL) {
 		Liste tmp = NULL;
 		Liste la = NULL;
