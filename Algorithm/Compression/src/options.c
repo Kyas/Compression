@@ -15,7 +15,8 @@
 #include <stdlib.h>
 #include <getopt.h>
 #include "options.h"
-#include <compression/compression.h>
+#include <alpha/compression/compression.h>
+#include <no_alpha/compression/compression.h>
 
 void printHelp() {
 	printf("\nUsage:\n");
@@ -56,8 +57,6 @@ int isArgCompression(Options opt, int mode) {
 			return 0;
 		}
 
-		printf("[COMPRESSION] Compression effectuée.\n");
-
 		return 1;
 
 	}
@@ -81,10 +80,6 @@ int isArgDecompression(Options opt, int mode) {
 		
 			return 0;
 		}
-
-		printf("[DECOMPRESSION] Décompression effectuée.\n");
-
-		return 1;
 
 	}
 	return 0;

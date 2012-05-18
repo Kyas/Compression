@@ -18,7 +18,7 @@
  * This structure represents a List, which can store a word of type char*, 
  */
 typedef struct cellule {
-	char *word;
+	char word[128];
 	struct cellule *next;
 } Cellule, * Liste;
 
