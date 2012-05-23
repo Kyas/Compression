@@ -28,8 +28,8 @@
 int main() {
 
 	/* The Compression Part */
-	FILE *in_compression = fopen("./src/exemples/declaration", "r");
-	FILE *out_compression = fopen("./src/exemples/declaration_code_no_alpha", "w");
+	FILE *in_compression = fopen("./src/exemples/texte_non_code_punct", "r");
+	FILE *out_compression = fopen("./src/exemples/texte_non_code_punct_code", "w");
 	
 	assert(newCompression(in_compression, out_compression) == 1);
 	

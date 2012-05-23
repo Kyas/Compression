@@ -22,29 +22,19 @@
 
 int main() {
 
-	FILE *in_array = fopen("./src/exemples/texte_non_code_punct", "r");
-	FILE *in_list = fopen("./src/exemples/texte_non_code_punct", "r");
+	FILE *in = fopen("./src/exemples/texte_non_code_punct", "r");
 	
-	assert(in_array != NULL);
-	assert(in_list != NULL);
-	
-	if(in_array != NULL) {
-		/* 2 modes for reading the file : An array of a List */
-		
-		/* The array of characters */
-		int numberOfWords = 0;
-		char** res = (char**)malloc(4096*sizeof(char*));
-		
-		res = readPunctIntoArray(in_array, &numberOfWords);
-		assert(res != NULL);
+	assert(in != NULL);
+
+	if(in != NULL) {
 		
 		/* The List */
 		Liste la = NULL;
+		Liste lp = NULL;
 		
-		assert(readAlphabIntoList(in_list, &la) == 1);
+		assert(readAlphabPunctIntoList(in, &la, &lp) == 1);
 		
-		fclose(in_array);
-		fclose(in_list);
+		fclose(in);
 	}
 	
 	testSuccessful(__FILE__);

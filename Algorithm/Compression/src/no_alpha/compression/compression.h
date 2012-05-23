@@ -15,6 +15,8 @@
 #ifndef COMPRESSION_H
 #define COMPRESSION_H
 
+#define SIZE_MAX 128
+
 /**
  * Make the compression of a uncrypted file.
  *

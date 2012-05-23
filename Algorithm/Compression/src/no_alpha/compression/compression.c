@@ -21,21 +21,21 @@
 #include <decoding/decoding.h>
 
 #include <no_alpha/file/file.h>
+#include <no_alpha/compression/compression.h>
 
 int newCompression (FILE *in, FILE *out) {
 	if(in != NULL) {
 		Liste tmp = NULL;
 		Liste la = NULL;
 		Liste lp = NULL;
-		
+
 		int na = 0;
 		int np = 0;
 		
-		printf("%d\n", readAlphabIntoList(in, &la));
-		printf("%d\n", readPunctIntoList(in, &lp));
-		printList(lp);
+		readAlphabPunctIntoList(in, &la, &lp);
 		
-		/* TODO Différencier maintenant les deux alpha */
+		printList(la);
+		printList(lp);
 		
 		while(la != NULL && lp != NULL) {
 		
@@ -44,31 +44,27 @@ int newCompression (FILE *in, FILE *out) {
 			
 			if(na == 0) {
 			
-				fprintf(out, "%d ", na);
-				fprintf(out, "%d ", strlen(la->word));
+				fprintf(out, "%d", na);
+				fprintf(out, "%d", strlen(la->word));
+				fprintf(out, "%s ", la->word);
 				
-				/* To make sure that the end of the line doesn't contain SPACES ! */
-/*				if(strcmp(la->next->word, "\n") != 0) {*/
-/*					fprintf(out, "%s ", la->word);*/
-/*				} else {*/
-/*					fprintf(out, "%s", la->word);*/
-/*				}*/
-				
-			} else if(na > 0) {
-				
-				if(strcmp(la->next->word, "\n") != 0) {
-					fprintf(out, "%d ", na);
-				} else {
-					fprintf(out, "%d", na);
-				}
-				
-			} else if(na == -2) {
-				fprintf(out, "\n");
 			} else {
+				
+				fprintf(out, "%d ", na);
+				
+			}  
 			
-				return 0;
+			if(np == 0) {
+			
+				fprintf(out, "%d", np);
+				fprintf(out, "%d", strlen(lp->word));
+				fprintf(out, "%s ", lp->word);
+				
+			} else {
+				
+				fprintf(out, "%d g", np);
+				
 			}
-			
 			
 			la = la->next;
 			lp = lp->next;
@@ -83,10 +79,11 @@ int newDecompression(FILE *in, FILE *out) {
 	
 		Liste tmp = NULL;
 		Liste la = NULL;
+		Liste lp = NULL;
 		
 		int n = 0;	
 		
-		readAlphabIntoList(in, &la);
+		readAlphabPunctIntoList(in, &la, &lp);
 		
 		while(la != NULL) {
 			

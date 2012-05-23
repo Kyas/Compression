@@ -22,12 +22,6 @@
 
 void displayString(char** s, int numberOfWords);
 
-char** readAlphabIntoArray(FILE* in, int* numberOfWords);
-
-char** readPunctIntoArray(FILE* in, int* numberOfWords);
-
-int readPunctIntoList(FILE* in, Liste *lp);
-
-int readAlphabIntoList(FILE* in, Liste *la);
+int readAlphabPunctIntoList(FILE* in, Liste *la, Liste *lp);
 
 #endif

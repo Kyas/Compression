@@ -1,14 +1,14 @@
 /*****************************************************************************
- * 
- * Copyright 2012 
+ *
+ * Copyright 2012
  * LE ROUX Thomas <thomas@november-eleven.fr>
  * LOR Jérémy <jeremyk.lor@gmail.com>
- * 
+ *
  * This file is part of the Algorithm Project : Compression.
- * 
+ *
  * Compression is free software: you can redistribute it and/or modify
  * it under the terms of the zlib license. See the COPYING file.
- * 
+ *
  *****************************************************************************/
 
 #include <stdio.h>
@@ -19,144 +19,62 @@
 
 #include <list/list.h>
 
+#define SIZE_MAX 128
+
 void displayString(char** s, int numberOfWords) {
 
-    int i;
-    
-    for(i=0; i < numberOfWords; i++) {
+	int i;
 
-    		printf("%s ", s[i]); 
+	for(i=0; i < numberOfWords; i++) {
 
-    }
-    
-    putchar('\n');
-    
-}
+		printf("%s ", s[i]);
 
-char** readAlphabIntoArray(FILE* in, int* numberOfWords) {
-
-    char c;
-    int i;
-    int j=0, k=0;
-    
-    /* Allocation of the 1st dimension */
-    char** res = (char**)malloc(4096*sizeof(char*));
-    
-    /* Allocation of the 2nd dimension */
-    for (i = 0; i < 4096; i++) {
-        res[i] = (char*)malloc (128*sizeof(char));
-    }
-    
-    if(res == NULL) {
-    
-        return NULL;
-        
-    }
-    
-    while((c=fgetc(in)) !=EOF) {
-    
-        if(isalnum(c) && isalpha(c)) {
-        
-            res[j][k] = c;
-            k++;
-            
-        } else {
-        
-        	res[j][k] = '\0';
-            j++;
-            k=0;
-            (*numberOfWords)++;
-            
-        }
-    }
-    
-    return res;
-    
-}
-
-char** readPunctIntoArray(FILE* in, int* numberOfWords) {
-
-    char c;
-    int i;
-    int j=0, k=0;
-    
-    /* Allocation of the 1st dimension */
-    char** res = (char**)malloc(4096*sizeof(char*));
-    
-    /* Allocation of the 2nd dimension */
-    for (i = 0; i < 4096; i++) {
-        res[i] = (char*)malloc (4096*sizeof(char));
-    }
-    
-    if(res == NULL) {
-    
-        return NULL;
-        
-    }
-    
-    while((c=fgetc(in)) !=EOF) {
-    
-        if(!isalnum(c) && !isalpha(c)) {
-        
-            res[j][k] = c;
-            k++;
-            
-        } else {
-        
-        	res[j][k] = '\0';
-            j++;
-            k=0;
-            (*numberOfWords)++;
-            
-        }
-    }
-    
-    return res;
-    
-}
-
-int readAlphabIntoList(FILE* in, Liste *la) {
-
-	if(in != NULL) {
-	
-		int i;
-		int numberOfWords = 0;
-		char** alphabetical = (char**)malloc(4096*sizeof(char*));
-		
-		alphabetical = readAlphabIntoArray(in, &numberOfWords);
-		
-		for(i=0; i < numberOfWords; i++) {
-		
-			addLast(la, alphabetical[i]);
-		}
-		
-		return 1;
-		
 	}
-	
-	return 0;
-	
+
+	putchar('\n');
+
 }
 
-int readPunctIntoList(FILE* in, Liste *lp) {
+int readAlphabPunctIntoList(FILE* in, Liste *la, Liste *lp) {
 
-	if(in != NULL) {
-	
-		int i;
-		int numberOfWords = 0;
-		char** ponctuation = (char**)malloc(4096*sizeof(char*));
-		
-		ponctuation = readPunctIntoArray(in, &numberOfWords);
-		
-		for(i=0; i < numberOfWords; i++) {
-		
-			addLast(lp, ponctuation[i]);
+	char c;
+	int i=0;
+	int j=0;
+
+	c=fgetc(in);
+	while(c !=EOF) {
+
+
+		if(isalnum(c)) {
+			char* alphab = (char*) malloc (4092 * sizeof(char));
+			while(isalnum(c)) {
+				alphab[i] = c;
+				i++;
+				c=fgetc(in);
+			}
+			alphab[i] = '\0';
+			addLast(la, alphab);
+			i=0;
+
+		} else {
+			char* punct = (char*) malloc (4092 * sizeof(char));
+
+			while(!isalnum(c) && c != EOF) {
+				punct[j] = c;
+				j++;
+				c=fgetc(in);
+				/* To avoid a space added in the list of punctuation at EOF. */
+				if(c == EOF) {
+					return 1;
+				}
+			}
+			punct[j] = '\0';
+			addLast(lp, punct);
+			j=0;
+
 		}
-		
-		return 1;
-		
 	}
-	
-	return 0;
-	
+
+	return 1;
+
 }
