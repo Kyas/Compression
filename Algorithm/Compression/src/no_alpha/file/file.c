@@ -19,7 +19,7 @@
 
 #include <list/list.h>
 
-#define SIZE_MAX 128
+#define SIZE_MAX 4092
 
 void displayString(char** s, int numberOfWords) {
 
@@ -42,11 +42,12 @@ int readAlphabPunctIntoList(FILE* in, Liste *la, Liste *lp) {
 	int j=0;
 
 	c=fgetc(in);
-	while(c !=EOF) {
-
-
+	while(c != EOF && c != '\n') {
+		
+	
 		if(isalnum(c)) {
-			char* alphab = (char*) malloc (4092 * sizeof(char));
+			char* alphab = (char*) malloc (SIZE_MAX * sizeof(char));
+
 			while(isalnum(c)) {
 				alphab[i] = c;
 				i++;
@@ -57,22 +58,22 @@ int readAlphabPunctIntoList(FILE* in, Liste *la, Liste *lp) {
 			i=0;
 
 		} else {
-			char* punct = (char*) malloc (4092 * sizeof(char));
+	
+			char* punct = (char*) malloc (SIZE_MAX * sizeof(char));
 
 			while(!isalnum(c) && c != EOF) {
 				punct[j] = c;
 				j++;
 				c=fgetc(in);
-				/* To avoid a space added in the list of punctuation at EOF. */
-				if(c == EOF) {
-					return 1;
-				}
 			}
 			punct[j] = '\0';
 			addLast(lp, punct);
 			j=0;
-
+			if(!isalnum(c)) {
+				return 1;
+			}
 		}
+
 	}
 
 	return 1;

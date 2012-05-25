@@ -37,13 +37,13 @@ int main() {
 	fclose(out_compression);
 	
 	/* The Decompression Part */
-/*	FILE *in_decompression = fopen("./src/exemples/declaration_code_no_alpha", "r");*/
-/*	FILE *out_decompression = fopen("./src/exemples/declaration_origin_no_alpha", "w");*/
-/*	*/
-/*	assert(newDecompression(in_decompression, out_decompression) == 1);*/
-/*	*/
-/*	fclose(in_decompression);*/
-/*	fclose(out_decompression);*/
+	FILE *in_decompression = fopen("./src/exemples/texte_non_code_punct_code", "r");
+	FILE *out_decompression = fopen("./src/exemples/texte_non_code_punct_code_origin", "w");
+	
+	assert(newDecompression(in_decompression, out_decompression) == 1);
+	
+	fclose(in_decompression);
+	fclose(out_decompression);
 
 	testSuccessful(__FILE__);
 
