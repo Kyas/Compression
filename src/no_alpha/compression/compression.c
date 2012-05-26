@@ -26,7 +26,8 @@
 
 int newCompression (FILE *in, FILE *out) {
 	if(in != NULL) {
-		Liste tmp = NULL;
+		Liste tmp_la = NULL;
+		Liste tmp_lp = NULL;
 		Liste la = NULL;
 		Liste lp = NULL;
 
@@ -34,40 +35,47 @@ int newCompression (FILE *in, FILE *out) {
 		int np = 0;
 
 		readAlphabPunctIntoList(in, &la, &lp);
+		
+		while(la != NULL || lp != NULL) {
 
-		while(la != NULL && lp != NULL) {
+			na = codingWordList(&tmp_la, la->word);
+			
+			if(la != NULL) {
+				if(na == 0) {
 
-			na = codingWordList(&tmp, la->word);
-			np = codingWordList(&tmp, lp->word);
-			printList(lp);
+					fprintf(out, "%d", na);
+					fprintf(out, "%d ", strlen(la->word));
+					fprintf(out, "%s ", la->word);
+				
+				} else {
 
-			if(na == 0) {
+					fprintf(out, "%d ", na);
+				
+				} 
+			
+				la = la->next;
+			}
+			
+			if(lp != NULL) {
+				np = codingWordPunctList(&tmp_lp, lp->word);
+			
+				if(np == 0) {
 
-				fprintf(out, "%d", na);
-				fprintf(out, "%d", strlen(la->word));
-				fprintf(out, "%s ", la->word);
+					fprintf(out, "%d", np);
+					fprintf(out, "%d ", strlen(lp->word));
+					fprintf(out, "%s ", lp->word);
+				
+				} else {
 
-			} else {
-
-				fprintf(out, "%d ", na);
-
+					fprintf(out, "%d ", np);
+				
+				}
+			
+				lp = lp->next;
 			}
 
-			if(np == 0) {
-
-				fprintf(out, "%d", np);
-				fprintf(out, "%d", strlen(lp->word));
-				fprintf(out, "%s ", lp->word);
-
-			} else {
-
-				fprintf(out, "%dx ", np);
-
-			}
-
-			la = la->next;
-			lp = lp->next;
 		}
+		
 		return 1;
 	}
 	return 0;
@@ -99,7 +107,7 @@ int newDecompression(FILE *in, FILE *out) {
 				size[i] = '\0';
 				i=0;
 
-
+				c=fgetc(in);
 				char* word = (char*) malloc (sizeof(char));
 
 				while(j < atoi(size)) {
@@ -115,25 +123,26 @@ int newDecompression(FILE *in, FILE *out) {
 					decodingWordList(&l1, word, 0);
 					index++;
 				} else {
-					printList(l2);
 					decodingWordList(&l2, word, 0);
 					index++;
 				}
+				
 
 			} else {
-				c=fgetc(in);
 				
 				if(index%2 == 0) {
-					printList(l1);
-					decodingWordList(&l1, NULL, c);
+					decodingWordList(&l1, NULL, c - '0');
 					fprintf(out, "%s", l1->word);
+				
 					index++;
 				} else {
-				printList(l2);
-					decodingWordList(&l2, NULL, c);
+					decodingWordList(&l2, NULL, c - '0');
 					fprintf(out, "%s", l2->word);
+				
 					index++;
 				}
+				c = fgetc(in);
+				
 			}
 			c = fgetc(in);
 

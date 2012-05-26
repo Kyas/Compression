@@ -19,7 +19,7 @@
 
 #include <list/list.h>
 
-#define SIZE_MAX 4092
+#define SIZE_MAX 8092
 
 void displayString(char** s, int numberOfWords) {
 
@@ -42,9 +42,8 @@ int readAlphabPunctIntoList(FILE* in, Liste *la, Liste *lp) {
 	int j=0;
 
 	c=fgetc(in);
-	while(c != EOF && c != '\n') {
+	while(c != EOF) {
 		
-	
 		if(isalnum(c)) {
 			char* alphab = (char*) malloc (SIZE_MAX * sizeof(char));
 
@@ -73,7 +72,7 @@ int readAlphabPunctIntoList(FILE* in, Liste *la, Liste *lp) {
 				return 1;
 			}
 		}
-
+		
 	}
 
 	return 1;
