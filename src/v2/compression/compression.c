@@ -21,8 +21,8 @@
 #include <coding/coding.h>
 #include <decoding/decoding.h>
 
-#include <no_alpha/file/file.h>
-#include <no_alpha/compression/compression.h>
+#include <v2/file/file.h>
+#include <v2/compression/compression.h>
 
 int newCompression (FILE *in, FILE *out) {
 	if(in != NULL) {

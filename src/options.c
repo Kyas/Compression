@@ -15,8 +15,8 @@
 #include <stdlib.h>
 #include <getopt.h>
 #include "options.h"
-#include <alpha/compression/compression.h>
-#include <no_alpha/compression/compression.h>
+#include <v1/compression/compression.h>
+#include <v2/compression/compression.h>
 
 void printHelp() {
 	printf("\nUsage:\n");

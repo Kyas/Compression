@@ -14,8 +14,8 @@
 #include <list/list.h>
 #include <coding/coding.h>
 #include <decoding/decoding.h>
-#include <alpha/file/file.h>
-#include <alpha/compression/compression.h>
+#include <v1/file/file.h>
+#include <v1/compression/compression.h>
 
 #include <stdio.h>
 #include <stdlib.h>
