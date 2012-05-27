@@ -57,6 +57,8 @@ int main() {
 	assert(codingWordList(&l, "le") == 0);
 	assert(codingWordList(&l, "maître") == 0);
 	
+	printf("See the source code to understand (src/test/test_coding.c) !\n\n");
+	
 	testSuccessful(__FILE__);
 	
     return 0;

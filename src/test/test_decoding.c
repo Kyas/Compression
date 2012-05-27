@@ -57,6 +57,8 @@ int main() {
 	assert(decodingWordList(&l, "le", 0) == 1);
 	assert(decodingWordList(&l, "maître", 0) == 1);
 	
+	printf("See the source code to understand (src/test/test_decoding.c) !\n\n");
+	
 	testSuccessful(__FILE__);
 	
     return 0;

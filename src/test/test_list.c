@@ -36,6 +36,8 @@ int main() {
 	assert(indexOf(l, "test5") == 4);
 	assert(deleteAt(&l,2) == 1);
 	assert(deleteFirst(&l) == 1);
+	
+	printf("No need to prove, the library works fine with the algorithm\n\n");
 
 	testSuccessful(__FILE__);
 	

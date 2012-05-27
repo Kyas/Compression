@@ -22,8 +22,8 @@
 
 int main() {
 
-	FILE *in_array = fopen("./src/exemples/texte_non_code", "r");
-	FILE *in_list = fopen("./src/exemples/texte_non_code", "r");
+	FILE *in_array = fopen("./src/exemples/version1/texte_non_code_v1_ascii", "r");
+	FILE *in_list = fopen("./src/exemples/version1/texte_non_code_v1_ascii", "r");
 	
 	assert(in_array != NULL);
 	assert(in_list != NULL);
@@ -41,6 +41,8 @@ int main() {
 		/* The List */
 		Liste l = readNoEncodedFileIntoList(in_list);
 		assert(l != NULL);
+		
+		printList(l);
 		
 		free(res);
 		fclose(in_array);

@@ -22,7 +22,7 @@
 
 int main() {
 
-	FILE *in = fopen("./src/exemples/texte_non_code_punct", "r");
+	FILE *in = fopen("./src/exemples/version2/texte_non_code_v2_ascii", "r");
 	
 	assert(in != NULL);
 
@@ -33,6 +33,8 @@ int main() {
 		Liste lp = NULL;
 		
 		assert(readAlphabPunctIntoList(in, &la, &lp) == 1);
+		printList(la);
+		printList(lp);
 		
 		fclose(in);
 	}
