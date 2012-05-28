@@ -1,29 +1,50 @@
-Algorithm Project - COMPRESSION
-=======================
-     Temporary file
-=======================
+Projet Algorithmique - COMPRESSION
 
-This file is for tests.
-This file is temporary at the moment because the program isn't finished yet !
+Fichier en Français.
 
 =======================
      HOW TO USE
 =======================
 
-- With the real program Compresse
+Dans ce programme, nous avons préféré utiliser la version 2 (mots alphabétiques et non alphabétiques).
+Nous n'avons pas voulu ajouter une 3ème option (version) afin de respecter les consignes du programme avec ses deux options (-[cd] et [tb]).
 
-I. FOR THE COMPRESSION
+=======================
+	I. COMPRESSION
+=======================
 
-1) Be at the folder ../Compression
-2) Use make
-3) Go to ../Compression/bin
-4) Use the example : Compresse -c -t texte_non_code texte_code
+1) Veuillez vous positionner dans le dossier /Compression.
+2) Faites la commande make sur la console.
+3) Vous devrez voir tous les jeux de tests défilés.
+4) Pour voir les fichiers tests crées pendant le make, veuillez jeter un coup d'oeil dans le dossier src/exemples suivant les versions (Voir Annexe plus en bas).
+5) Positionnez vous maintenant dans le dossier Compression/bin en utilisant la commande : cd bin
+6) Utilisez l'exemple : 
+	./Compresse -c -t /home/username/Compression/src/exemples/version2/texte_non_code_v2_ascii test_fichier_code
 
-5) See now the file texte_code (the output file is encrypted).
+7) Regardez maintenant le fichier crée dans le dossier bin. Vous verrez donc le fichier encodé de l'exemple du projet.
 
-II. FOR THE DECOMPRESSION
+=======================
+	II. DECOMPRESSION
+=======================
 
-1) Be sure to do 'make' before !
-2) Use the example : Compresse -d -t texte_code texte_code_origin
+1) N'oubliez pas de faire un 'make' avant de faire ceci !
+2) Utilisez l'exemple : 
+	./Compresse -d -t test_fichier_code test_fichier_origin
 
-3) See now the file texte_code_origin (the output file is decrypted).
+3) Regardez maintenant le fichier cré dans le dossier bin. Vous verrez donc le fichier décodé de l'exemple du projet.
+   Vous pouvez également comparer ce fichier d'origine avec /home/username/Compression/src/exemples/version2/texte_non_code_v2_ascii.
+   Résultat : Aucune perte, ni d'augmentation de taille, les deux fichiers sont identiques !
+   
+=======================
+	III.ANNEXES
+=======================
+
+Il est à noter que les jeux de tests sont utilisés avec les 2 versions :
+- V1 : Compression/Décompression avec une version simple ignorant les séparations et les ponctuations (d'après l'énoncé du projet).
+- V2 (Utilisée pour le main) : Compression/Décompression avec les mots alphabétiques / non alphabétiques (d'après l'énoncé du projet). 
+
+Vous verrez dans le dossier Compression/src/exemples/ tous les fichiers crées pendant la commande 'make'.
+
+Les fichiers ayant un suffixe "non_code_v._ascii" par exemple représentent les fichiers en entrée pour la première fois.
+Après compression, le fichier encodé porte le suffixe "_code".
+Après décompression, nous retrouvons le fichier à l'origine avec le suffixe "_origin".

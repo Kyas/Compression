@@ -15,7 +15,6 @@
 #include <stdlib.h>
 #include <getopt.h>
 #include "options.h"
-#include <v1/compression/compression.h>
 #include <v2/compression/compression.h>
 
 void printHelp() {
@@ -93,18 +92,18 @@ int isArgTexte(const char *file_input, const char *file_output, int comp) {
 	file_i = fopen(file_input, "r");
 	file_o = fopen(file_output, "w");
 
-	if (file_i == NULL && file_o == NULL) {
+	if (file_i == NULL || file_o == NULL) {
 		printf("[TEXTE] Fichier introuvable !\n\n");
 		return 0;
 		
 	} else if (comp == 1) {
 	
-		compression(file_i, file_o);
+		newCompression(file_i, file_o);
 		printf("[TEXTE] Mode Texte avec compression effectuée.\n\n");
 		
 	} else if (comp == 2) {
 	
-		decompression(file_i, file_o);
+		newDecompression(file_i, file_o);
 		printf("[TEXTE] Mode Texte avec décompression effectuée.\n\n");
 		
 	} else {
@@ -125,17 +124,17 @@ int isArgBits(const char *file_input, const char *file_output, int comp) {
 	file_i = fopen(file_input, "r");
 	file_o = fopen(file_output, "w");
 
-	if (file_i == NULL && file_o == NULL) {
+	if (file_i == NULL || file_o == NULL) {
 		printf("[BITS] Fichier introuvable !\n\n");
 		return 0;
 	} else if (comp == 1) {
 	
-		compression(file_i, file_o);
+		newCompression(file_i, file_o);
 		printf("[BITS] Mode Octets avec compression effectuée.\n\n");
 		
 	} else if (comp == 2) {
 	
-		decompression(file_i, file_o);
+		newDecompression(file_i, file_o);
 		printf("[BITS] Mode Octets avec décompression effectuée.\n\n");
 		
 	} else {
