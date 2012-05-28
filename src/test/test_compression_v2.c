@@ -32,19 +32,29 @@ int main() {
 	FILE *in_compression = fopen("./src/exemples/version2/texte_non_code_v2_ascii", "r");
 	FILE *out_compression = fopen("./src/exemples/version2/texte_non_code_v2_ascii_code", "w");
 	
-	FILE *in_compression_bytes = fopen("./src/exemples/version2/texte_non_code_v2_ascii", "r");
-	FILE *out_compression_bytes = fopen("./src/exemples/version2/texte_non_code_v2_ascii_code_bytes", "w");
-	
 	assert(newCompression(in_compression, out_compression) == 1);
-	assert(newCompressionBytes(in_compression_bytes, out_compression_bytes) == 1);
 	
 	fclose(in_compression);
 	fclose(out_compression);
+	
+	FILE *in_compression_advanced = fopen("./src/exemples/version2/jaccuse_v2_ascii", "r");
+	FILE *out_compression_advanced = fopen("./src/exemples/version2/jaccuse_v2_ascii_code", "w");
+	
+	assert(newCompression(in_compression_advanced, out_compression_advanced) == 1);
+	
+	fclose(in_compression_advanced);
+	fclose(out_compression_advanced);
+	
+	FILE *in_compression_bytes = fopen("./src/exemples/version2/texte_non_code_v2_ascii", "r");
+	FILE *out_compression_bytes = fopen("./src/exemples/version2/texte_non_code_v2_ascii_code_bytes", "w");
+	
+	assert(newCompressionBytes(in_compression_bytes, out_compression_bytes) == 1);
+	
 	fclose(in_compression_bytes);
 	fclose(out_compression_bytes);
 	printf("\n");
 	
-	printf("To see the file result with compression, go in src/exemples/texte_non_code_v2_ascii_code !\n\n");
+	printf("To see the file result with compression, go in src/exemples/texte_non_code_v2_ascii_code & bytes !\n\n");
 	
 	/* The Decompression Part */
 	FILE *in_decompression = fopen("./src/exemples/version2/texte_non_code_v2_ascii_code", "r");
@@ -52,10 +62,19 @@ int main() {
 	
 	assert(newDecompression(in_decompression, out_decompression) == 1);
 	
-	printf("To see the file result, go in src/exemples/version2/texte_non_code_v2_ascii_origin !\n\n");
-	
 	fclose(in_decompression);
 	fclose(out_decompression);
+	
+	FILE *in_decompression_advanced = fopen("./src/exemples/version2/jaccuse_v2_ascii_code", "r");
+	FILE *out_decompression_advanced = fopen("./src/exemples/version2/jaccuse_v2_ascii_origin", "w");
+	
+	assert(newDecompression(in_decompression_advanced, out_decompression_advanced) == 1);
+	
+	printf("To see the file result, go in src/exemples/version2/texte_non_code_v2_ascii_origin !\n");
+	printf("To see the file result, go in src/exemples/version2/jaccuse_v2_ascii_origin !\n\n");
+	
+	fclose(in_decompression_advanced);
+	fclose(out_decompression_advanced);
 
 	testSuccessful(__FILE__);
 

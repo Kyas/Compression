@@ -147,22 +147,21 @@ int newDecompression(FILE *in, FILE *out) {
 					index++;
 				}
 
-
 			} else {
-
+			
 				if(index%2 == 0) {
 					decodingWordList(&l1, NULL, c - '0');
 					fprintf(out, "%s", l1->word);
 
 					index++;
 				} else {
-					decodingWordList(&l2, NULL, c - '0');
+					decodingWordList(&l2, NULL,  c - '0');
 					fprintf(out, "%s", l2->word);
 
 					index++;
 				}
 				c = fgetc(in);
-
+				
 			}
 			c = fgetc(in);
 
