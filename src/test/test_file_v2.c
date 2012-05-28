@@ -33,7 +33,13 @@ int main() {
 		Liste lp = NULL;
 		
 		assert(readAlphabPunctIntoList(in, &la, &lp) == 1);
+		
+		printf("During the reading ! These are not real Lists, just to get every word before the algorithm.\n\n");
+		printf("Alphabetical word List:\n");
 		printList(la);
+		printf("\n");
+		
+		printf("Non-alphabetical word List:\n");
 		printList(lp);
 		
 		fclose(in);

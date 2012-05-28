@@ -129,13 +129,12 @@ int isArgBits(const char *file_input, const char *file_output, int comp) {
 		return 0;
 	} else if (comp == 1) {
 	
-		newCompression(file_i, file_o);
+		newCompressionBytes(file_i, file_o);
 		printf("[BITS] Mode Octets avec compression effectuée.\n\n");
 		
 	} else if (comp == 2) {
 	
-		newDecompression(file_i, file_o);
-		printf("[BITS] Mode Octets avec décompression effectuée.\n\n");
+		printf("[BITS] Cas non géré (faute de temps).\n\n");
 		
 	} else {
 		return 0;

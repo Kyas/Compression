@@ -16,7 +16,7 @@ Thomas LE ROUX (november-eleven) <thomas.leroux.identity@gmail.com> (developper)
 =======================
 Email:             jeremyk.lor@gmail.com - thomas.leroux.identity@gmail.com
 
-Report a bug:      https://github.com/Kyas/Compression/issues (Specify the project Compression !)
+Report a bug:      https://github.com/Kyas/Compression/issues
  
 =======================
         License

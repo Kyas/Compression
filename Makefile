@@ -33,7 +33,7 @@ test_valgrind: test_list test_binary test_coding test_decoding test_file_v1 test
 Compresse: src/main.o src/options.o \
 	src/v2/compression/debug-compression_v2.o \
 	src/coding/debug-coding.o src/decoding/debug-decoding.o \
-	src/list/debug-list.o src/v2/file/debug-file_v2.o
+	src/list/debug-list.o src/binary/debug-binary.o src/v2/file/debug-file_v2.o
 	@mkdir -p bin/
 	$(CC) $(CPPFLAGS_FAST) $(CFLAGS_FAST) $^ -o bin/$@
 	@echo Compilation of $@ [DONE]
@@ -75,8 +75,8 @@ test_file_v2: src/list/debug-list.o src/v2/file/debug-file_v2.o src/test/test_fi
 	$(CC) $(CPPFLAGS_DEBUG) $(CFLAGS_DEBUG) $^ -o bin/$@
 	@echo Compilation of $@ [DONE]
 	
-test_compression_v2: src/list/debug-list.o src/v2/file/debug-file_v2.o src/coding/debug-coding.o \
-	src/decoding/debug-decoding.o src/v2/compression/debug-compression_v2.o \
+test_compression_v2: src/list/debug-list.o src/binary/debug-binary.o src/v2/file/debug-file_v2.o \
+	src/coding/debug-coding.o src/decoding/debug-decoding.o src/v2/compression/debug-compression_v2.o \
 	src/test/test_compression_v2.o src/test/test.o
 	@mkdir -p bin/
 	$(CC) $(CPPFLAGS_DEBUG) $(CFLAGS_DEBUG) $^ -o bin/$@

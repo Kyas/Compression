@@ -37,11 +37,41 @@ void displayBinary(unsigned int n) {
 }
 
 /**
- * Put a character.
+ * To get the number of Bytes to use for the integer.
  *
  * @param n
- *		The unsigned int.
- * @return A character.
+ *		An unsigned integer.
+
+ * @return The number of Bytes we must use.
+ */
+int getNbOctet(unsigned int n) {
+	int octet = 0;
+	int isBit = 0;
+	int i = 0, j;
+
+	while(i < 3) {
+
+		for(j = 7*(i+1); j >= i*8; j--) {
+			if((n >> j ) & 1) {
+				isBit++;
+			}
+		}
+
+		if(isBit > 0) {
+			octet++;
+		}
+		isBit = 0;
+		i++;
+	}
+	return octet;
+}
+
+/**
+ * Put a character.
+ *
+ * @param c
+ *		An integer
+ * @return The return of the function write.
  */
 int putBinary(int c)
 {
@@ -85,35 +115,6 @@ void displayValue(unsigned int n) {
 }
 
 /**
- * To get the number of Bytes to use for the integer.
- *
- * @param n
- *		An unsigned integer.
- * @return The number of Bytes we must use.
- */
-int getNbOctet(unsigned int n) {
-	int octet = 0;
-	int isBit = 0;
-	int i = 0, j;
-
-	while(i < 3) {
-
-		for(j = 7*(i+1); j >= i*8; j--) {
-			if((n >> j ) & 1) {
-				isBit++;
-			}
-		}
-
-		if(isBit > 0) {
-			octet++;
-		}
-		isBit = 0;
-		i++;
-	}
-	return octet;
-}
-
-/**
  * Transform the integer by packets of 7 bits, the eighth is used to 
  * indicate if the writing continues on the next byte.
  *
@@ -121,7 +122,6 @@ int getNbOctet(unsigned int n) {
  *		An unsigned integer.
  * @return The array of Bytes in 2 dimensions.
  */
- 
 unsigned int** transformInt(unsigned int n) {
 	if(n > 0) {
 		int size = getNbOctet(n);
@@ -193,6 +193,12 @@ void displayTransformInt(unsigned int** tab, unsigned int n) {
 	printf("\n");
 }
 
+/**
+ * Free the array of bytes.
+ *
+ * @param tab
+ *		The array of bytes in 2 dimensions.
+ */
 void freeBytes(unsigned int **tab) {
 	free(tab[0]);
 	free(tab);

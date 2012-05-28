@@ -37,4 +37,20 @@ int newCompression(FILE *in, FILE *out);
  */
 int newDecompression(FILE *in, FILE *out); 
 
+/**
+ * Make the compression of a uncrypted file by the method of bytes.
+ *
+ * @param *in
+ *		The input file (uncrypted file)
+ * @param *out
+ *		The output file (the uncrypted file becomes crypted)
+ * @return 1 if the compression is a success, 0 otherwise.
+ */
+int newCompressionBytes (FILE *in, FILE *out);
+
+/**
+ * We didn't have the time to do this.
+ */
+/* int newDecompressionBytes (FILE *in, FILE *out); */
+
 #endif
