@@ -130,4 +130,3 @@ src/test/%.o: src/test/%.c
 
 %.o: %.c
 	$(CC) $(CPPFLAGS_FAST) $(CFLAGS_FAST) -c -ansi $< -o $@
-

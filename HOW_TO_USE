@@ -35,11 +35,14 @@ Nous n'avons pas voulu ajouter une 3ème option (version) afin de respecter les 
    Vous pouvez également comparer ce fichier d'origine avec /home/username/Compression/src/exemples/version2/texte_non_code_v2_ascii.
    Résultat : Aucune perte, ni d'augmentation de taille, les deux fichiers sont identiques !
    
+/!\ On ne gère pas la compression + décompression en même temps pour le programme Compresse !
+Il faudra faire en premier la compression puis la décompression !
+   
 =======================
 	III.ANNEXES
 =======================
 
-Il est à noter que les jeux de tests sont utilisés avec les 2 versions :
+Il est à noter que les jeux de tests sont utilisés avec 2 versions :
 - V1 : Compression/Décompression avec une version simple ignorant les séparations et les ponctuations (d'après l'énoncé du projet).
 - V2 (Utilisée pour le main) : Compression/Décompression avec les mots alphabétiques / non alphabétiques (d'après l'énoncé du projet). 
 
